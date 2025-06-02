@@ -5,10 +5,13 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import Header from "./components/Header";
 
 function App() {
     return (
         <BrowserRouter>
+            {/* si on veux l'afficher dans toute les pages  */}
+            <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/sign-in" element={<Signin />} />
