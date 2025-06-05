@@ -27,12 +27,12 @@ function Header() {
                             Acceuil
                         </li>
                     </Link>
-                    <Link to="/About">
+                    <Link to="/about">
                         <li className="hidden sm:inline text-slate-700 hover:underline">
                             A propos
                         </li>
                     </Link>
-                    <Link to="/Sign-in">
+                    <Link to="/sign-in">
                         <li className="hidden sm:inline text-slate-700 hover:underline">
                             Connexion
                         </li>
