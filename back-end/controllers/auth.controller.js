@@ -32,7 +32,7 @@ export const signin = async (req, res, next) => {
             validUser.password
         );
         if (!validPassword)
-            return next(errorHandler(404, "Faux mon de passe "));
+            return next(errorHandler(404, "Faux mot de passe "));
 
         // creation de token pour la connexion
         const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
