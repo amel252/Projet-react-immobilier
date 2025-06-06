@@ -11,10 +11,11 @@ function Signup() {
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            // pour associer son id avec la valeur ecrit
+            // pour associer son id avec la valeur écrite
             [e.target.id]: e.target.value,
         });
     };
+    // fonction permettant la soumission du formulaire
     const handleSumit = async (e) => {
         e.preventDefault();
         try {
