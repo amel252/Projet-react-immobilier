@@ -2,7 +2,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-// import { signInSuccess } from "../redux/user/userSlice";
+import { signInSuccess } from "../redux/user/userSlice";
 
 export default function OAuth() {
     const dispatch = useDispatch();
@@ -27,7 +27,8 @@ export default function OAuth() {
                     photo: result.user.photoURL,
                 }),
             });
-            //dispatch(signInSuccess(result.user)); // à activer si tu gères Redux
+            const data = await res.json();
+            dispatch(signInSuccess(data)); // à activer si tu gères Redux
             navigate("/"); // redirige vers accueil ou une autre page (chatgpt)
         } catch (error) {
             console.log("Tu ne peux pas te connecter avec google", error);

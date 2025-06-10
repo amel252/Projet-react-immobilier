@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
     signInStart,
-    signInSucces,
+    signInSuccess,
     signInFailure,
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth.jsx";
@@ -43,7 +43,7 @@ function Signin() {
                 return;
             }
             // si ca se passe bien l'utilisateur est rediriger vers la page sign-in (connexion)
-            dispatch(signInSucces(data));
+            dispatch(signInSuccess(data));
             navigate("/");
         } catch (error) {
             dispatch(signInFailure(error.message));
