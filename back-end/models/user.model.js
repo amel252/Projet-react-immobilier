@@ -19,7 +19,7 @@ const userSchema = mongoose.Schema(
         },
         avatar: {
             type: String,
-            default: "https://randomuser.me/api/portraits/women/79.jpg",
+            default: "https://randomuser.me/api/portraits/men/22.jpg",
         },
     },
     {
