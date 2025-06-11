@@ -38,6 +38,7 @@ function Header() {
                     <Link to="/profile">
                         {currentUser ? (
                             <img
+                                // on met ? pour forcer la récupération de l'img
                                 src={currentUser?.avatar}
                                 alt="profile"
                                 className="rounded-full h-7 w-7 object-cover"
