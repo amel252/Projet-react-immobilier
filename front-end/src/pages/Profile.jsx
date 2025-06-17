@@ -13,6 +13,9 @@ import {
     deleteUserStart,
     deleteUserSuccess,
     deleteUserFailure,
+    signOutUserStart,
+    signOutUserSuccess,
+    signOutUserFailure,
 } from "../redux/user/userSlice";
 import { app } from "../firebase";
 
@@ -106,6 +109,21 @@ export default function Profile() {
             dispatch(deleteUserFailure(error));
         }
     };
+    // déconnexion compte
+    const handleSignOut = async () => {
+        try {
+            dispatch(signOutUserStart());
+            const res = await fetch("/api/auth/signout");
+            const data = await res.json();
+            if (data.success === false) {
+                dispatch(signOutUserFailure(data.message));
+                return;
+            }
+            dispatch(signOutUserSuccess(data.message));
+        } catch (error) {
+            dispatch(signOutUserFailure(error.message));
+        }
+    };
     // le resultat :
     return (
         <div className="p-3 max-w-lg mx-auto">
@@ -181,7 +199,12 @@ export default function Profile() {
                 >
                     Supprimer le compte
                 </span>
-                <span className="text-red-700 cursor-pointer">Déconnexion</span>
+                <span
+                    onClick={handleSignOut}
+                    className="text-red-700 cursor-pointer"
+                >
+                    Déconnexion
+                </span>
             </div>
 
             {error && <p className="text-red-700 mt-3">{error}</p>}
