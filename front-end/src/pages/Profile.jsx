@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -190,6 +191,12 @@ export default function Profile() {
                 <button className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-90">
                     {loading ? "Chargement..." : "Mettre à jour"}
                 </button>
+                <Link
+                    to={"/create-listing"}
+                    className="bg-green-700 rounded-lg text-center text-white p-3 uppercase hover:opacity-85"
+                >
+                    Créer une annonce
+                </Link>
             </form>
 
             <div className="flex justify-between mt-5">
