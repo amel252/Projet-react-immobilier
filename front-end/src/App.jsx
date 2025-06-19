@@ -8,7 +8,6 @@ import Signup from "./pages/Signup";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/createListing";
-import Listing from "../../back-end/models/listing.model";
 
 function App() {
     return (

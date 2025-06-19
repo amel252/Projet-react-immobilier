@@ -120,8 +120,9 @@ export default function CreateListing() {
                             multiple
                         />
                         <button
+                            type="button"
                             className="p-3 text-green-700
-                         border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+                         border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-85"
                         >
                             Télecharger
                         </button>

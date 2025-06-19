@@ -9,7 +9,6 @@ dotenv.config();
 
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
-import listingRouter from "./routes/listing.route.js";
 
 const app = express();
 app.use(express.json());
@@ -30,7 +29,6 @@ app.listen(3000, () => {
 // import des routes
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
-app.use("/api/listing", listingRouter);
 
 // creation de middleware
 app.use((err, req, res, next) => {

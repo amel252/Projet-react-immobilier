@@ -7,7 +7,8 @@ export const initialState = {
     loading: false,
 };
 
-// creation   de slice
+// creation   de slice:
+// Signin :
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -27,62 +28,54 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.loading = false;
         },
-        // ******************************
-        // update nos données :
+        // update :
         updateUserStart: (state) => {
             state.loading = true;
-            state.error = null;
         },
-
         updateUserSuccess: (state, action) => {
             state.currentUser = action.payload;
             state.loading = false;
             state.error = null;
         },
-
         updateUserFailure: (state, action) => {
-            state.loading = false;
             state.error = action.payload;
+            state.loading = false;
         },
-        // *************************
-        // méthode de delete account
         deleteUserStart: (state) => {
             state.loading = true;
-            state.error = null;
         },
-
         deleteUserSuccess: (state) => {
             state.currentUser = null;
             state.loading = false;
             state.error = null;
         },
-
         deleteUserFailure: (state, action) => {
-            state.loading = false;
             state.error = action.payload;
+            state.loading = false;
         },
-        // déconnexion de compte
         signOutUserStart: (state) => {
             state.loading = true;
         },
+
         signOutUserSuccess: (state) => {
             state.currentUser = null;
             state.loading = false;
             state.error = null;
         },
-        signOutUserFailure(state, action) {
+        signOutUserFailure: (state, action) => {
             state.error = action.payload;
             state.loading = false;
         },
+        //
     },
 });
 export const {
     signInStart,
     signInSuccess,
     signInFailure,
-    updateUserStart,
-    updateUserSuccess,
     updateUserFailure,
+    updateUserSuccess,
+    updateUserStart,
     deleteUserStart,
     deleteUserSuccess,
     deleteUserFailure,

@@ -6,7 +6,7 @@ export const test = (req, res) => {
         message: "Api  de test fonctionne",
     });
 };
-// methode de mise a jour de nos données :
+// si on veux supprimer l'uti ou bien modifier
 export const updateUser = async (req, res, next) => {
     if (req.user.id !== req.params.id)
         return next(
@@ -32,27 +32,6 @@ export const updateUser = async (req, res, next) => {
             { new: true }
         );
         const { password, ...rest } = updateUser._doc;
-        res.status(200).json(rest);
-    } catch (error) {
-        next(error);
-    }
-};
-// méthode de suppression d'un compte :
-export const deleteUser = async (req, res, next) => {
-    // on compare l'utilisateur en bd avec l'utilisateur passé en parametre
-    if (req.user.id !== req.params.id) {
-        return next(
-            errorHandler(
-                401,
-                "Tu ne peux seulement supprimer ton propre compte"
-            )
-        );
-    }
-    try {
-        await User.findByIdAndDelete(req.params.id);
-        res.clearCookie("access_token");
-        res.status(200).json("L'utilisateur supprimé");
-    } catch (error) {
-        next(error);
-    }
+        res.status(200).json;
+    } catch (error) {}
 };
