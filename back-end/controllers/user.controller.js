@@ -33,5 +33,28 @@ export const updateUser = async (req, res, next) => {
         );
         const { password, ...rest } = updateUser._doc;
         res.status(200).json;
-    } catch (error) {}
+    } catch (error) {
+        next(error)
+    }
 };
+
+
+// méthode de suppression d'un compte :
+export const deleteUser = async (req, res, next) => {
+    // on compare l'utilisateur en bd avec l'utilisateur passé en parametre
+    if (req.user.id !== req.params.id) {
+        return next(
+            errorHandler(
+                401,
+                "Tu ne peux seulement supprimer ton propre compte"
+            )
+        );
+    }
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.clearCookie("access_token");
+        res.status(200).json("L'utilisateur supprimé");
+    } catch (error) {
+        next(error);
+    }
+}

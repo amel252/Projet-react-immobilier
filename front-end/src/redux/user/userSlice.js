@@ -28,7 +28,7 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.loading = false;
         },
-        // update :
+        // update le profile  :
         updateUserStart: (state) => {
             state.loading = true;
         },
@@ -41,6 +41,7 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.loading = false;
         },
+        // supprimer le compte
         deleteUserStart: (state) => {
             state.loading = true;
         },
@@ -53,6 +54,7 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.loading = false;
         },
+        // déconnexion  compte
         signOutUserStart: (state) => {
             state.loading = true;
         },
