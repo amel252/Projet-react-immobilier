@@ -273,8 +273,8 @@ export default function Profile() {
                             <Link to={`/listing/${listing._id}`} className="flex-1 text-slate-700 font-semibold hover:underline truncate">{listing.name}
                             </Link>
                             <div className="flex flex-col items-center">
-                                <button onClick={()=> handelDeleteListing (listing._id)} className="text-red-700 uppercase">Delete</button>
-                                <button className="text-green-700 uppercase">Edit</button>
+                                <button onClick={()=> handelDeleteListing (listing._id)} className="text-red-700 uppercase">Supprimer</button>
+                                <button className="text-green-700 uppercase">Editer</button>
                             </div>
                         </div>
                         ))
