@@ -1,6 +1,7 @@
 import Listing from "../models/listing.model.js";
 import { errorHandler } from "../utils/errors.js";
 
+// function pour créer une annonce
 export const createListing = async (req, res, next) => {
     try {
         const listing = await Listing.create(req.body);
@@ -9,6 +10,7 @@ export const createListing = async (req, res, next) => {
         next(error);
     }
 };
+// function pour supprimer l'annonce
 export const deleteListing = async (req, res, next) => {
     try {
         const listing = await Listing.findById(req.params.id);
@@ -27,6 +29,7 @@ export const deleteListing = async (req, res, next) => {
         next(error);
     }
 };
+// function pour modifier les annonces
 export const updateListing = async (req, res, next) => {
     const listing = await Listing.findById(req.params.id);
     if (!listing) {
@@ -40,6 +43,18 @@ export const updateListing = async (req, res, next) => {
             req.params.id, req.body, { new: true }
         );
         res.status(200).json(updateListing)
+    } catch (error) {
+        next(error)
+    }
+}
+//
+export const getListing = async (req, res, next) => {
+    try {
+        const listing = await Listing.findById(req.params.id);
+        if (!listing) {
+            return next(errorHandler(404, "Annonce non trouvée "))
+        }
+        res.status(200).json(listing)
     } catch (error) {
         next(error)
     }
