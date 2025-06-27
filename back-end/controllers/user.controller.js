@@ -1,8 +1,7 @@
 import { errorHandler } from "../utils/errors.js";
 import bcryptjs from "bcryptjs";
 import User from "../models/user.model.js";
-import Listing from '../models/listing.model.js'; // assure-toi d'importer ton modèle
-
+import Listing from "../models/listing.model.js"; // assure-toi d'importer ton modèle
 
 export const test = (req, res) => {
     res.json({
@@ -37,10 +36,9 @@ export const updateUser = async (req, res, next) => {
         const { password, ...rest } = updateUser._doc;
         res.status(200).json;
     } catch (error) {
-        next(error)
+        next(error);
     }
 };
-
 
 // méthode de suppression d'un compte :
 export const deleteUser = async (req, res, next) => {
@@ -60,7 +58,7 @@ export const deleteUser = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-}
+};
 
 export const getUserListings = async (req, res, next) => {
     if (req.user.id === req.params.id) {
@@ -72,6 +70,20 @@ export const getUserListings = async (req, res, next) => {
             next(error);
         }
     } else {
-        return next(errorHandler(401, "Tu peux voir que tes propres annonces."));
+        return next(
+            errorHandler(401, "Tu peux voir que tes propres annonces.")
+        );
+    }
+};
+// une function permet de récup l'utilisateur qui va contacter le proprietaire
+export const getUser = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) return next(errorHandler(404, "Utilisateur non trouvé"));
+
+        const { password, ...rest } = user._doc;
+        res.status(200).json(rest);
+    } catch (error) {
+        next(error);
     }
 };

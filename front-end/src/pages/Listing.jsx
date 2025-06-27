@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
+import { useSelector } from "react-redux";
+import contact from "../components/Contact";
 import {
     FaShare,
     FaMapMarker,
@@ -25,6 +27,7 @@ import Img4 from "../assets/hero-carousel/img4.jpg";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
+import Contact from "../components/Contact";
 
 export default function Listing() {
     SwiperCore.use([Navigation]);
@@ -32,6 +35,9 @@ export default function Listing() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [contact, setContact] = useState(false);
+
+    const { currentUser } = useSelector((state) => state.user);
 
     const params = useParams();
 
@@ -200,6 +206,17 @@ export default function Listing() {
                                 {listing.furnished ? "Meublée" : "Non meublée"}
                             </li>
                         </ul>
+                        {currentUser &&
+                            listing.userRef !== currentUser._id &&
+                            !contact && (
+                                <button
+                                    onChange={() => setContact(true)}
+                                    className="bg-slate-700 rounded-lg uppercase hover:opacity-95 p-3"
+                                >
+                                    Contacter le bailleur
+                                </button>
+                            )}
+                        {contact && <Contact listing={listing} />}
                     </div>
                 </div>
             )}
