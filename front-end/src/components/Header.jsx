@@ -1,10 +1,29 @@
 // ca me permet de naviguer entre les pages
+
 import { IoIosSearch } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 function Header() {
+    const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.user);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set("searchTerm", searchTerm);
+        const searchQuery = urlParams.toString();
+        navigate(`/search?${searchQuery}`);
+    };
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search);
+        const searchTermFromUrl = urlParams.get("search");
+        if (searchTermFromUrl) {
+            setSearchTerm(searchTermFromUrl);
+        }
+    }, [location.search]);
     return (
         <header className="bg-slate-200 shadow-md">
             <div className="flex justify-between items-center max-w-6xl mx-auto p-2">
@@ -15,11 +34,15 @@ function Header() {
                         <span className="text-slate-700">Agency</span>
                     </h1>
                 </Link>
-                <form className="bg-slate-100 p-3 rounded-rounded-lg flex items-center">
+                <form
+                    onSubmit={handleSubmit}
+                    className="bg-slate-100 p-3 rounded-rounded-lg flex items-center"
+                >
                     <input
                         type="text"
                         placeholder="Recherche ...."
                         className="bg-transparent focus:outline-none w-24 sm:w-64"
+                        onChange={(e) => setSearchTerm(e.target.value)}
                     />
                     <IoIosSearch />
                 </form>
