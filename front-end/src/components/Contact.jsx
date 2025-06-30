@@ -14,8 +14,8 @@ export default function Contact({ listing }) {
             } catch (error) {
                 console.log(error);
             }
-            fetchLandlord();
         };
+        fetchLandlord();
     }, [listing.userRef]);
     function onChange(e) {
         setMessage(e.target.value);
@@ -42,7 +42,7 @@ export default function Contact({ listing }) {
                     ></textarea>
                     <Link
                         to={`mailto:${landlord.email}?subject=Regarding
-                        ${listing.name}$body={message}`}
+                        ${listing.name}&body=${message}`}
                         className="bg-slate-700 text-white text-center p-3 rounded-lg uppercase"
                     >
                         Envoyer le message
