@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import { useSelector } from "react-redux";
-import contact from "../components/Contact";
+import Contact from "../components/Contact";
 import {
     FaShare,
     FaMapMarker,
@@ -27,7 +27,6 @@ import Img4 from "../assets/hero-carousel/img4.jpg";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
-import Contact from "../components/Contact";
 
 export default function Listing() {
     SwiperCore.use([Navigation]);
@@ -163,7 +162,7 @@ export default function Listing() {
                             {listing.address}
                         </p>
                         <div className="flex gap-4">
-                            <p className="bg-red-900 w-full max-w[200px] text-white text-center p-1 rounded-md">
+                            <p className="bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
                                 {listing.type === "rent" ? "location" : "Vente"}
                             </p>
                             {listing.offer && (
