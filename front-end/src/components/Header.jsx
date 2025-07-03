@@ -4,6 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
 
 function Header() {
     const navigate = useNavigate();
@@ -44,7 +45,9 @@ function Header() {
                         className="bg-transparent focus:outline-none w-24 sm:w-64"
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <IoIosSearch />
+                    <button>
+                        <FaSearch className="text-slate-700" />
+                    </button>
                 </form>
                 <ul className="flex gap-4">
                     <Link to="/">
